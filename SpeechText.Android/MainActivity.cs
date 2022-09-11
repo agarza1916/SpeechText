@@ -34,6 +34,7 @@ namespace SpeechText.Droid
 
         protected override void OnActivityResult(int requestCode, Result resultVal, Intent data)
         {
+            //base.OnActivityResult(requestCode, resultVal, data);
             if (requestCode == VOICE)
             {
                 if (resultVal == Result.Ok)
@@ -44,20 +45,16 @@ namespace SpeechText.Droid
                         string textInput = matches[0];
 
                         // limit the output to 500 characters
-                        if (textInput.Length > 500)
-                            textInput = textInput.Substring(0, 500);
+                        //if (textInput.Length > 500)
+                        //    textInput = textInput.Substring(0, 500);
                         SpeechService.TextRecorded = textInput;
-                        Toast.MakeText(Android.App.Application.Context, textInput, ToastLength.Short).Show();
+                        // change the text back on the button
+                        SpeechService.autoEvent.Set();
                     }
                     else
                         Toast.MakeText(Android.App.Application.Context, "No speech was recognised", ToastLength.Short).Show();
-                    // change the text back on the button
-                    Toast.MakeText(Android.App.Application.Context, "Start Recording", ToastLength.Short).Show();
                 }
-                SpeechService.autoEvent.Set();
             }
-
-            base.OnActivityResult(requestCode, resultVal, data);
         }
 
     }

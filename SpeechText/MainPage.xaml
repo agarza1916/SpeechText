@@ -4,10 +4,13 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <StackLayout>
+    <StackLayout VerticalOptions="CenterAndExpand">
 
-        <Button x:Name="btnGrabar" Text="Grabar"  Clicked="btnGrabar_Clicked"/>
-        <Editor x:Name="txtEditor" />
+        <Button
+            x:Name="btnGrabar"
+            Clicked="btnGrabar_Clicked"
+            Text="Grabar" />
+        <Editor x:Name="txtEditor" HeightRequest="100" />
 
     </StackLayout>
 
