@@ -4,14 +4,75 @@
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
-    <StackLayout VerticalOptions="CenterAndExpand">
+    <StackLayout>
 
-        <Button
-            x:Name="btnGrabar"
-            Clicked="btnGrabar_Clicked"
-            Text="Grabar" />
-        <Editor x:Name="txtEditor" HeightRequest="100" />
+        <StackLayout IsVisible="false" VerticalOptions="Start">
 
+            <Button
+                x:Name="btnGrabar"
+                Clicked="btnGrabar_Clicked"
+                Text="Grabar" />
+            <Editor x:Name="txtEditor" HeightRequest="100" />
+
+        </StackLayout>
+        <StackLayout HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand">
+            <CarouselView
+                x:Name="carousel"
+                PositionChanged="carousel_PositionChanged"
+                IndicatorView="indicatorview"
+                VerticalOptions="CenterAndExpand">
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="Auto" />
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Row="0"
+                                Grid.Column="0"
+                                FontSize="Title"
+                                HorizontalOptions="Center"
+                                HorizontalTextAlignment="Center"
+                                Text="{Binding Name}"
+                                VerticalOptions="Center" />
+                            <Image
+                                Grid.Row="1"
+                                Grid.Column="0"
+                                Margin="10,0"
+                                HeightRequest="250"
+                                Source="{Binding Image}" />
+
+                            <Label
+                                Grid.Row="2"
+                                Grid.Column="0"
+                                FontSize="Subtitle"
+                                Text="Recolección" />
+                            <Entry
+                                x:Name="txtPhisical"
+                                Grid.Row="3"
+                                Grid.Column="0"
+                                Focused="txtPhisical_Focused"
+                                Keyboard="Numeric"
+                                Placeholder="0"
+                                TabIndex="2" />
+                        </Grid>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+            <IndicatorView
+                x:Name="indicatorview"
+                IndicatorColor="LightGray"
+                IndicatorSize="10"
+                SelectedIndicatorColor="Gray" />
+        </StackLayout>
     </StackLayout>
-
 </ContentPage>
